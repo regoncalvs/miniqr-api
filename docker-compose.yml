@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  db-miniqr:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: "Des@fioMiniQr!"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+    volumes:
+      - db-miniqr-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PDes@fioMiniQr!", "-Q", "select 1"]
+      timeout: 10s
+      retries: 10 
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      db-miniqr:
+        condition: service_healthy
+        restart: true
+
+volumes:
+  db-miniqr-data:

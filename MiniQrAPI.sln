@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniQr.Application", "MiniQr.Application\MiniQr.Application.csproj", "{4A5CC2A7-447C-4042-BE5A-2C1999543A30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniQr.Persistence", "MiniQr.Persistence\MiniQr.Persistence.csproj", "{2B79BEBD-632E-4EF6-9C94-ED508664AD2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniQr.Utils", "MiniQr.Utils\MiniQr.Utils.csproj", "{8CA3FD2C-F7BC-4B5E-8DDB-D78F273111C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniQr.Domain", "MiniQr.Domain\MiniQr.Domain.csproj", "{73E58CEE-2109-4AFB-8B0C-55472AF396AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniQr.API", "MiniQr.API\MiniQr.API.csproj", "{10C40802-0AF1-4D71-B41B-25349696079C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniQr.Tests", "MiniQr.Tests\MiniQr.Tests.csproj", "{3726D29E-3BA9-4447-A705-72671AC0228F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A5CC2A7-447C-4042-BE5A-2C1999543A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A5CC2A7-447C-4042-BE5A-2C1999543A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A5CC2A7-447C-4042-BE5A-2C1999543A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A5CC2A7-447C-4042-BE5A-2C1999543A30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B79BEBD-632E-4EF6-9C94-ED508664AD2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B79BEBD-632E-4EF6-9C94-ED508664AD2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B79BEBD-632E-4EF6-9C94-ED508664AD2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B79BEBD-632E-4EF6-9C94-ED508664AD2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA3FD2C-F7BC-4B5E-8DDB-D78F273111C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA3FD2C-F7BC-4B5E-8DDB-D78F273111C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA3FD2C-F7BC-4B5E-8DDB-D78F273111C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA3FD2C-F7BC-4B5E-8DDB-D78F273111C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73E58CEE-2109-4AFB-8B0C-55472AF396AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73E58CEE-2109-4AFB-8B0C-55472AF396AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73E58CEE-2109-4AFB-8B0C-55472AF396AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73E58CEE-2109-4AFB-8B0C-55472AF396AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10C40802-0AF1-4D71-B41B-25349696079C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10C40802-0AF1-4D71-B41B-25349696079C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10C40802-0AF1-4D71-B41B-25349696079C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10C40802-0AF1-4D71-B41B-25349696079C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3726D29E-3BA9-4447-A705-72671AC0228F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3726D29E-3BA9-4447-A705-72671AC0228F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3726D29E-3BA9-4447-A705-72671AC0228F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3726D29E-3BA9-4447-A705-72671AC0228F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D697E39A-D14C-48EA-8FAF-F39333AC8A72}
+	EndGlobalSection
+EndGlobal
