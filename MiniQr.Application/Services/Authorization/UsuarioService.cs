@@ -5,6 +5,7 @@ using MiniQr.Application.Commands.CriarUsuario;
 using MiniQr.Application.Commands.LoginUsuario;
 using MiniQr.Domain.Models;
 using MiniQr.Utils.Constants;
+using MiniQr.Utils.Exceptions;
 
 namespace MiniQr.Application.Services.Authorization
 {
@@ -64,13 +65,13 @@ namespace MiniQr.Application.Services.Authorization
         /// <returns>Token JWT</returns>
         public async Task<string> Login(LoginUsuarioCommand dto)
         {
-            var usuario = await _userManager.Users.FirstAsync(u => u.UserName == dto.Email) ?? throw new("Usuário não encontrado!");
+            var usuario = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == dto.Email) ?? throw new UsuarioNaoExisteException();
 
             var resultado = await _signInManager.PasswordSignInAsync(dto.Email, dto.Senha, false, false);
 
             if (!resultado.Succeeded)
             {
-                throw new("Usuário não autenticado!");
+                throw new CredenciaisInvalidasException();
             }
 
             var token = await _tokenService.GenerateTokenAsync(usuario);

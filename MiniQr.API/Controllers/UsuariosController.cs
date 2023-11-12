@@ -5,6 +5,7 @@ using MiniQr.Application.Commands.CriarUsuario;
 using MiniQr.Application.Commands.LoginUsuario;
 using MiniQr.Application.Commands.LogoutUsuario;
 using MiniQr.Utils.Constants;
+using MiniQr.Utils.Exceptions;
 
 namespace MiniQr.API.Controllers
 {
@@ -65,10 +66,18 @@ namespace MiniQr.API.Controllers
                 var resultado = await _mediator.Send(command);
                 return Ok(resultado);
             }
+            catch (Exception ex) when (ex is UsuarioNaoExisteException || ex is CredenciaisInvalidasException)
+            {
+                return ValidationProblem(ex.Message);
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
-                return BadRequest(ex.Message);
+                return Problem(
+                    detail: ex.Message,
+                    statusCode: StatusCodes.Status500InternalServerError,
+                    title: "Internal Server Error"
+                );
             }
         }
 
@@ -88,7 +97,11 @@ namespace MiniQr.API.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
-                return BadRequest(ex.Message);
+                return Problem(
+                    detail: ex.Message,
+                    statusCode: StatusCodes.Status500InternalServerError,
+                    title: "Internal Server Error"
+                );
             }
         }
     }
