@@ -49,7 +49,7 @@ builder.Services.AddCors(options =>
 //swagger
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "AdopetAPI", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MiniQrAPI", Version = "v1" });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Scheme = "bearer",
