@@ -12,7 +12,7 @@ using MiniQr.Persistence;
 namespace MiniQr.Persistence.Migrations
 {
     [DbContext(typeof(MiniQrContext))]
-    [Migration("20231112053320_InicializandoMiniQrDB")]
+    [Migration("20231112231431_InicializandoMiniQrDB")]
     partial class InicializandoMiniQrDB
     {
         /// <inheritdoc />
