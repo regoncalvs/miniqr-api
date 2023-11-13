@@ -19,5 +19,10 @@
         /// Representa a chave de configuração para a chave de segurança simétrica.
         /// </summary>
         public const string SymmetricSecurityKey = "SymmetricSecurityKey";
+
+        /// <summary>
+        /// Representa a chave de configuração para a chave de criptografia simétrica.
+        /// </summary>
+        public const string CriptografiaKey = "CriptografiaKey";
     }
 }

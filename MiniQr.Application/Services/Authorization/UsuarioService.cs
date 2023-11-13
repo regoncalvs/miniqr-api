@@ -19,6 +19,7 @@ namespace MiniQr.Application.Services.Authorization
         private readonly SignInManager<Usuario> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly TokenService _tokenService;
+        private readonly CriptografiaService _criptografiaService;
 
         /// <summary>
         /// Define construtor para UsuarioService
@@ -27,7 +28,7 @@ namespace MiniQr.Application.Services.Authorization
         /// <param name="userManager"></param>
         /// <param name="signInManager"></param>
         /// <param name="tokenService"></param>
-        public UsuarioService(IMapper mapper, UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, TokenService tokenService, RoleManager<IdentityRole> roleManager)
+        public UsuarioService(IMapper mapper, UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, TokenService tokenService, RoleManager<IdentityRole> roleManager, CriptografiaService criptografiaService)
         {
             _mapper = mapper;
             _userManager = userManager;
@@ -35,6 +36,7 @@ namespace MiniQr.Application.Services.Authorization
             _signInManager = signInManager;
             _tokenService = tokenService;
             _roleManager = roleManager;
+            _criptografiaService = criptografiaService;
         }
 
         /// <summary>
@@ -46,6 +48,8 @@ namespace MiniQr.Application.Services.Authorization
             if (!await _roleManager.RoleExistsAsync(Perfis.Master)) await _roleManager.CreateAsync(new IdentityRole(Perfis.Master));
             if (!await _roleManager.RoleExistsAsync(Perfis.Administrador)) await _roleManager.CreateAsync(new IdentityRole(Perfis.Administrador));
             if (!await _roleManager.RoleExistsAsync(Perfis.Lojista)) await _roleManager.CreateAsync(new IdentityRole(Perfis.Lojista));
+
+            dto.Password = _criptografiaService.Descriptografar(dto.Password);
 
             Usuario usuario = _mapper.Map<Usuario>(dto);
             IdentityResult resultado = await _userManager.CreateAsync(usuario, dto.Password);
@@ -65,6 +69,8 @@ namespace MiniQr.Application.Services.Authorization
         /// <returns>Token JWT</returns>
         public async Task<string> Login(LoginUsuarioCommand dto)
         {
+            dto.Senha = _criptografiaService.Descriptografar(dto.Senha);
+
             var usuario = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == dto.Email) ?? throw new UsuarioNaoExisteException();
 
             var resultado = await _signInManager.PasswordSignInAsync(dto.Email, dto.Senha, false, false);
