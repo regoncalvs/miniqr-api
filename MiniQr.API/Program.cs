@@ -96,6 +96,7 @@ builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<CriptografiaService>();
 builder.Services.AddScoped<ComunicaNovaCobrancaService>();
 builder.Services.AddScoped<ComunicaCancelamentoCobrancaService>();
+builder.Services.AddScoped<ComunicaPagamentoCobrancaService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

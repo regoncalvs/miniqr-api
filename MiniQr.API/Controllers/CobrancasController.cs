@@ -8,6 +8,7 @@ using MiniQr.Utils.Exceptions;
 using MiniQr.Application.Commands.CancelarCobranca;
 using MiniQr.Application.Commands.CriarCobranca;
 using MiniQr.Application.Queries.ObterCobrancasPagas;
+using MiniQr.Application.Commands.PagarCobranca;
 
 namespace MiniQr.API.Controllers
 {
@@ -93,12 +94,12 @@ namespace MiniQr.API.Controllers
         }
 
         /// <summary>
-        /// Obtém todas as cobranças com status "Paga".
+        /// Obtém todas as cobranças.
         /// </summary>
         /// <returns>ActionResult com o resultado da consulta de cobranças.</returns>
         [HttpGet()]
-        [Authorize(Roles = Perfis.Administrador)]
-        public async Task<IActionResult> ObterCobrancasAdmin()
+        [Authorize(Roles = $"{Perfis.Administrador},{Perfis.Master}")]
+        public async Task<IActionResult> ObterCobrancas()
         {
             try
             {
@@ -139,6 +140,41 @@ namespace MiniQr.API.Controllers
                 return NotFound(ex.Message);
             }
             catch (CobrancaNaoPodeSerCanceladaException ex)
+            {
+                return ValidationProblem(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return Problem(
+                    detail: ex.Message,
+                    statusCode: StatusCodes.Status500InternalServerError,
+                    title: "Internal Server Error"
+                );
+            }
+        }
+
+        /// <summary>
+        /// Paga uma cobrança.
+        /// </summary>
+        /// <param name="idCobranca">Id da cobrança.</param>
+        /// <returns>ActionResult com o resultado do pagamento.</returns>
+        [HttpPost("{idCobranca}/pagar")]
+        [Authorize(Roles = Perfis.Master)]
+        public async Task<IActionResult> PagarCobranca(Guid idCobranca)
+        {
+            try
+            {
+                PagarCobrancaCommand command = new(idCobranca);
+                var result = await _mediator.Send(command);
+
+                return Ok(result);
+            }
+            catch (RegistroNaoEncontradoException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (CobrancaNaoPodeSerPagaException ex)
             {
                 return ValidationProblem(ex.Message);
             }
