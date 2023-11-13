@@ -101,10 +101,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddValidatorsFromAssembly(typeof(CriarCobrancaValidator).Assembly);
 builder.Services.AddHttpClient();
-builder.Services.AddHttpsRedirection(options =>
-{
-    options.HttpsPort = 443;
-});
 
 var app = builder.Build();
 
